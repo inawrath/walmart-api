@@ -11,13 +11,21 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import mongoengine
+import os
+
+from dotenv import (
+    load_dotenv,
+    find_dotenv,
+)
+
+load_dotenv(find_dotenv())
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=__+u0aj7dpeani71a*++@801$b34kvl#mqm!znprvtevw8jqj'
+SECRET_KEY = os.getenv('SECRET_KEY', '&8lwx=5w1+7=q3pdv&8bqguc)j*!3yc6u9l05^g1=m96+ffgv8')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -69,14 +77,19 @@ WSGI_APPLICATION = 'walmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+PORT_MONGO = os.getenv('PORT_MONGO', '27017')
+
+if PORT_MONGO.isnumeric():
+    PORT_MONGO = int(PORT_MONGO)
+
 mongoengine.register_connection(
     alias='default',
     db='promotions',
-    host="127.0.0.1",
-    port=27017,
-    username="productListUser",
-    password="productListPassword",
-    authentication_source="admin"
+    host=os.getenv('HOST_MONGO', '127.0.0.1'),
+    port=PORT_MONGO,
+    username=os.getenv('USER_MONGO', 'productListUser'),
+    password=os.getenv('PASSWORD_MONGO', 'productListPassword'),
+    authentication_source='admin'
 )
 
 
