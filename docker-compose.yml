@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+    command: bash -c "python manage.py runserver --settings walmart.settings 0:8000"
+    env_file: ./environment/local.env
+    ports:
+      - 8000:8000
+    tty: true
+    volumes:
+      - .:/code
+  test:
+    build:
+      context: .
+      dockerfile: ./docker/django/Dockerfile
+    command: bash -c "pytest"
+    tty: true
+    volumes:
+      - .:/code
