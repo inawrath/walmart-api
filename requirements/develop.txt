@@ -1,2 +1,7 @@
 -r ./commons.txt
 ipdb==0.13.4
+mongomock==3.21.0
+pytest==6.1.1
+coverage==4.5.4
+pytest-cov==2.10.1
+pytest-django==4.1.0

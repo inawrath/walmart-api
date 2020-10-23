@@ -1,5 +1,4 @@
 from bson.objectid import ObjectId
-from decimal import Decimal
 from mongoengine import (
     Document,
     StringField,
@@ -9,7 +8,7 @@ from mongoengine import (
 from .manager import ProductManager
 
 
-class Products(Document):
+class Product(Document):
     id_ = LongField(unique=True, db_field="id")
     brand = StringField()
     description = StringField()
@@ -26,8 +25,6 @@ class Products(Document):
             attr = getattr(self, a)
             if type(attr) in [str, int, float]:
                 dictionary[a] = attr
-            elif type(attr) is Decimal:
-                dictionary[a] = float(attr)
             elif type(attr) is ObjectId:
                 dictionary[a] = str(attr)
         return dictionary

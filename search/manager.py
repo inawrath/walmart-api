@@ -8,7 +8,7 @@ ITEMS_PER_PAGE = 12
 
 class ProductManager(QuerySet):
 
-    def search(self, search, page):
+    def search(self, search, page=1):
         is_palindrome = text_palindrome(search)
         filter_query = Q()
 
