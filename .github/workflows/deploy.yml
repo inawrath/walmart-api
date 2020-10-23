@@ -25,3 +25,4 @@ jobs:
           heroku_app_name: "walmart-api-inawrath"
           heroku_email: ${{ secrets.EMAIL_HEROKU }}
           usedocker: true
+          dontuseforce: true
