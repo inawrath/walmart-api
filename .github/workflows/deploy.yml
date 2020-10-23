@@ -19,10 +19,3 @@ jobs:
           pip install -r requirements/develop.txt
       - name: Run test
         run: pytest
-      - uses: akhileshns/heroku-deploy@v3.0.0
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "walmart-api-inawrath"
-          heroku_email: ${{ secrets.EMAIL_HEROKU }}
-          usedocker: true
-          dontuseforce: true
