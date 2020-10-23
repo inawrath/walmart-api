@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: mongo:3.6.8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=productListUser
+      - MONGO_INITDB_ROOT_PASSWORD=productListPassword
+    ports:
+      - "27017:27017"
+  migration:
+    image: mongo:3.6.8
+    depends_on:
+      - db
+    working_dir: /database
+    command: /bin/bash -c './import.sh db'
+    volumes:
+      - ./database:/database
