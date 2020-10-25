@@ -5,7 +5,10 @@ services:
       context: .
       dockerfile: ./docker/django/Dockerfile
     command: bash -c "python manage.py runserver --settings walmart.settings 0:8000"
-    env_file: ./environment/local.env
+    depends_on:
+      - db
+    environment:
+      - MONGO_URI=mongodb://productListUser:productListPassword@db:27017/promotions?authSource=admin
     ports:
       - 8000:8000
     tty: true
@@ -19,3 +22,18 @@ services:
     tty: true
     volumes:
       - .:/code
+  db:
+    image: mongo:3.6.8
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=productListUser
+      - MONGO_INITDB_ROOT_PASSWORD=productListPassword
+    ports:
+      - "27017:27017"
+  migration:
+    image: mongo:3.6.8
+    depends_on:
+      - db
+    working_dir: /database
+    command: /bin/bash -c './import.sh db'
+    volumes:
+      - ./database:/database

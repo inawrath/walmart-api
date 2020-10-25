@@ -7,3 +7,6 @@ class TestPalindrome:
 
     def test_is_not_palindrome(self):
         assert text_palindrome('ivan') is False
+
+    def test_empty_string(self):
+        assert text_palindrome('') is False

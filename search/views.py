@@ -9,8 +9,8 @@ class SearchApiView(View):
 
     @csrf_exempt
     def get(self, request, *args, **kwargs):
-        search = request.GET.get('search', '').strip()
+        text = request.GET.get('text', '').strip()
         page = request.GET.get('page', '1')
         page = int(page) if page.isnumeric() else 1
 
-        return JsonResponse(data=Product.objects.search(search, page), safe=False)
+        return JsonResponse(data=Product.objects.search(text, page), safe=False)

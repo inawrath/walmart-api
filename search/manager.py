@@ -15,7 +15,7 @@ class ProductManager(QuerySet):
         if search.isnumeric():
             filter_query = Q(id_=search)
         else:
-            if len(search) >= 3:
+            if len(search) > 3:
                 filter_query = Q(brand__contains=search) | Q(description__contains=search)
         query = self.filter(filter_query)
 

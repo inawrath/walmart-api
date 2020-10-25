@@ -2,3 +2,5 @@ Django==3.1.2
 mongoengine==0.20.0
 python-dotenv==0.14.0
 gunicorn==20.0.4
+dnspython==2.0.0
+django-cors-headers==3.5.0

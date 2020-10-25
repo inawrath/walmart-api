@@ -42,17 +42,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'search',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'walmart.urls'
 
@@ -78,19 +82,9 @@ WSGI_APPLICATION = 'walmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-PORT_MONGO = os.getenv('PORT_MONGO', '27017')
-
-if PORT_MONGO.isnumeric():
-    PORT_MONGO = int(PORT_MONGO)
-
 mongoengine.register_connection(
     alias='default',
-    db='promotions',
-    host=os.getenv('HOST_MONGO', '127.0.0.1'),
-    port=PORT_MONGO,
-    username=os.getenv('USER_MONGO', 'productListUser'),
-    password=os.getenv('PASSWORD_MONGO', 'productListPassword'),
-    authentication_source='admin'
+    host=os.getenv('MONGO_URI')
 )
 
 

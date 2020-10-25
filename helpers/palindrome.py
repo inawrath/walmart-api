@@ -1,3 +1,3 @@
 def text_palindrome(text):
     text = text.lower()
-    return text == text[::-1]
+    return len(text) > 1 and text == text[::-1]

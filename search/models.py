@@ -17,6 +17,7 @@ class Product(Document):
 
     meta = {
         'queryset_class': ProductManager,
+        'collection': 'products',
     }
 
     def to_dictionary(self):
