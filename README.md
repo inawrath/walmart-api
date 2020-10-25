@@ -8,6 +8,7 @@ Para este proyecto, se tomaron las siguientes consideraciones.
 * Se levanto el proyecto de docker en Heroku mediante Gunicorn, y los test corren en github actions.
 * Se utilizo la regla de Palindromos que fueran 2 o más caracteres.
 * La busqueda minima en texto es de 4 caracteres(en el enunciado decir mayor a 3)
+* La API esta expuesta en `https://tranquil-reaches-35249.herokuapp.com/search`
 
 
 # Correr el proyecto en local
@@ -21,3 +22,12 @@ Los parametros de entrada de la API son `text` y `page` donde `text` es un strin
 # Test
 
 Para realizar test se debe levantar el contenedor con `docker-compose up test`. Este contenedor no necesita de una DB ya que utiliza `mongomock` para realizar las pruebas correspondientes y se agrego una muestra de los datos enviados en el enunciado.
+
+# Variables de entorno
+
+Existen 2 variables de entorno en el proyecto.
+
+Variable | Descripción
+------------ | -------------
+SECRET_KEY | Es un valor random generado como una semilla para el proyecto de Django.
+MONGO_URI | Es el URI de conexión a MongoDB
