@@ -10,7 +10,7 @@ class TestSearch:
         assert Product.objects.count() == 2
 
     def test_filter_by_test(self):
-        list_products = Product.objects.search('rhr')
+        list_products = Product.objects.search('dsaasd')
         assert list_products['total'] == 1
 
     def test_filter_by_id(self):
@@ -18,5 +18,5 @@ class TestSearch:
         assert list_products['total'] == 1
 
     def test_filter_palindrome_search(self):
-        list_products = Product.objects.search('lñl')
+        list_products = Product.objects.search('saas')
         assert list_products['products'][0]['has_discount'] is True
